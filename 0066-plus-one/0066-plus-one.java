@@ -1,21 +1,19 @@
 class Solution {
-   public int[] plusOne(int[] digits) {
-        int carry = 1;
+  public int[] plusOne(int[] digits) {
         
-        for (int i = digits.length - 1; i >= 0; i--) {
-            int sum = digits[i] + carry;
-            digits[i] = sum % 10;
-            carry = sum / 10;
-        }
-        
-        if (carry == 0) {
+    int lastDigit = digits.length;
+    for(int i=lastDigit-1; i>=0; i--) {
+        if(digits[i] < 9) {
+            digits[i]++;
             return digits;
-        } else {
-            int[] result = new int[digits.length + 1];
-            result[0] = carry;
-            System.arraycopy(digits, 0, result, 1, digits.length);
-            return result;
         }
         
+        digits[i] = 0;
     }
+    
+    int[] number = new int[lastDigit + 1]; // if all the digits are 9
+    number[0] = 1;
+    
+    return number;
+}
 }
