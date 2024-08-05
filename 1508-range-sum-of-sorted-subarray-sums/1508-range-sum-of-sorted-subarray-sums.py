@@ -1,13 +1,19 @@
 class Solution:
     def rangeSum(self, nums, n, left, right):
-        MOD = 10**9 + 7
-        subarray_sums = []
+        mod = 10**9 + 7
+        arr = []
+        for i in range(len(nums)):
+            sum_ = 0
+            for j in range(i, len(nums)):
+                arr.append(nums[j] + sum_)
+                sum_ += nums[j]
+                
+        arr.sort()
         
-        for i in range(n):
-            current_sum = 0
-            for j in range(i, n):
-                current_sum += nums[j]
-                subarray_sums.append(current_sum)
+        total = sum(arr[left-1:right])
         
-        subarray_sums.sort()
-        return sum(subarray_sums[left-1:right]) % MOD
+        return total%mod
+        
+                
+            
+        
